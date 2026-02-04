@@ -1,4 +1,0 @@
-interface:
-  display_name: "Convex Functions"
-  short_description: "Write Convex functions with correct syntax"
-  default_prompt: "Use $convex-functions to implement a Convex function."
