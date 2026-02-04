@@ -1,12 +1,10 @@
 # Convex Agent Skills
 
-A small collection of Convex-focused skills for AI coding agents.
+A Convex-focused skill bundle for AI coding agents.
 
 ## Available Skills
 
-- `convex-functions`: Convex function syntax, validators, registration rules, and function references.
-- `convex-runtime`: Convex runtime guidelines for queries, mutations, actions, pagination, search, scheduling, and storage.
-- `convex-schema`: Convex schema, validators, indexes, and type guidance.
+- `convex-best-practices`: Combined Convex rules covering functions, runtime behavior, and schema design.
 
 ## Install
 
@@ -17,17 +15,18 @@ npx skills add <owner>/<repo>
 Install a specific skill:
 
 ```bash
-npx skills add <owner>/<repo> --skill convex-functions
+npx skills add <owner>/<repo> --skill convex-best-practices
 ```
 
 ## Structure
 
 ```
 skills/
-  convex-functions/
+  convex-best-practices/
+    AGENTS.md
     SKILL.md
-  convex-runtime/
-    SKILL.md
-  convex-schema/
-    SKILL.md
+    rules/
+      convex-functions.md
+      convex-runtime.md
+      convex-schema.md
 ```
