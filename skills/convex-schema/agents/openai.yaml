@@ -1,0 +1,4 @@
+interface:
+  display_name: "Convex Schema"
+  short_description: "Model Convex data and indexes correctly"
+  default_prompt: "Use $convex-schema to define a Convex schema."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Convex Runtime"
+  short_description: "Apply Convex query, action, and cron rules"
+  default_prompt: "Use $convex-runtime to implement Convex runtime logic."
