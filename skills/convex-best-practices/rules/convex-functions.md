@@ -1,151 +1,75 @@
 # Convex Rules (Functions)
 
-## Function guidelines
+## Canonical docs
 
-### New function syntax
-- ALWAYS use the new function syntax for Convex functions.
+- https://docs.convex.dev/functions
+- https://docs.convex.dev/functions/query-functions
+- https://docs.convex.dev/functions/mutation-functions
+- https://docs.convex.dev/functions/actions
+- https://docs.convex.dev/functions/http-actions
+- https://docs.convex.dev/functions/internal-functions
+- https://docs.convex.dev/functions/runtimes
+- https://docs.convex.dev/functions/validation
 
-```typescript
-import { query } from "./_generated/server";
-import { v } from "convex/values";
-export const f = query({
-    args: {},
-    returns: v.null(),
-    handler: async (ctx, args) => {
-    // Function body
-    },
-});
-```
+## Function registration and visibility
 
-### Http endpoint syntax
-- HTTP endpoints are defined in `convex/http.ts` and require an `httpAction` decorator.
-
-```typescript
-import { httpRouter } from "convex/server";
-import { httpAction } from "./_generated/server";
-const http = httpRouter();
-http.route({
-    path: "/echo",
-    method: "POST",
-    handler: httpAction(async (ctx, req) => {
-    const body = await req.bytes();
-    return new Response(body, { status: 200 });
-    }),
-});
-```
-
-- HTTP endpoints are always registered at the exact path you specify in the `path` field.
-
-### Validators
-- Example array validator:
-
-```typescript
-import { mutation } from "./_generated/server";
-import { v } from "convex/values";
-
-export default mutation({
-args: {
-    simpleArray: v.array(v.union(v.string(), v.number())),
-},
-handler: async (ctx, args) => {
-    //...
-},
-});
-```
-
-- Example schema with discriminated union validators:
-
-```typescript
-import { defineSchema, defineTable } from "convex/server";
-import { v } from "convex/values";
-
-export default defineSchema({
-    results: defineTable(
-        v.union(
-            v.object({
-                kind: v.literal("error"),
-                errorMessage: v.string(),
-            }),
-            v.object({
-                kind: v.literal("success"),
-                value: v.number(),
-            }),
-        ),
-    )
-});
-```
-
-- Always use `v.null()` when returning null.
-
-```typescript
-import { query } from "./_generated/server";
-import { v } from "convex/values";
-
-export const exampleQuery = query({
-  args: {},
-  returns: v.null(),
-  handler: async (ctx, args) => {
-      console.log("This query returns a null value");
-      return null;
-  },
-});
-```
-
-- Valid Convex types and validators:
-
-Convex Type  | TS/JS type  |  Example Usage         | Validator for argument validation and schemas  | Notes
------------ | ----------- | ---------------------- | ---------------------------------------------- | -----
-Id          | string      | `doc._id`              | `v.id(tableName)`                              |
-Null        | null        | `null`                 | `v.null()`                                     | `undefined` is not valid; use `null`.
-Int64       | bigint      | `3n`                   | `v.int64()`                                    | BigInt only between -2^63 and 2^63-1.
-Float64     | number      | `3.1`                  | `v.number()`                                   | NaN/Inf serialize as strings.
-Boolean     | boolean     | `true`                 | `v.boolean()`                                  |
-String      | string      | `"abc"`                | `v.string()`                                   | UTF-8, under 1MB.
-Bytes       | ArrayBuffer | `new ArrayBuffer(8)`   | `v.bytes()`                                    | Under 1MB.
-Array       | Array       | `[1, 3.2, "abc"]`      | `v.array(values)`                              | Max 8192 values.
-Object      | Object      | `{a: "abc"}`           | `v.object({property: value})`                  | Plain objects only, max 1024 entries.
-Record      | Record      | `{"a": "1", "b": "2"}` | `v.record(keys, values)`                       | Keys ASCII, nonempty, not starting with `$` or `_`.
-
-### Function registration
-- Use `internalQuery`, `internalMutation`, and `internalAction` for internal functions.
 - Use `query`, `mutation`, and `action` for public functions.
-- Do NOT register functions via `api` or `internal` objects.
-- Always include argument and return validators for all functions.
-- If a function doesn't return anything, include `returns: v.null()`.
+- Use `internalQuery`, `internalMutation`, and `internalAction` for server-only entrypoints.
+- Prefer internal functions for business logic that clients must not call directly.
 
-### Function calling
-- `ctx.runQuery` for queries.
-- `ctx.runMutation` for mutations.
-- `ctx.runAction` for actions.
-- Only call actions from actions for runtime crossing; otherwise use shared helpers.
-- Calls take `FunctionReference`, not a direct function value.
-- If calling a function in the same file, annotate return type to avoid TS circularity.
+## Validator policy
 
-```typescript
-export const f = query({
-  args: { name: v.string() },
-  returns: v.string(),
-  handler: async (ctx, args) => {
-    return "Hello " + args.name;
-  },
+- Public queries, mutations, and actions must define `args` validators, including `args: {}` when no arguments are expected.
+- Internal functions should usually define `args` validators, but may omit them for trusted, complex payloads passed only between server functions.
+- Prefer `returns` validators for API boundary clarity, security hardening, and strong inferred return types.
+- If intentionally returning no value, prefer `returns: v.null()` and return `null`.
+
+## Function references and calls
+
+- Use generated references from `./_generated/api`: `api` for public functions and `internal` for internal functions.
+- Use `ctx.runQuery`, `ctx.runMutation`, and `ctx.runAction` with function references, not function values.
+- Prefer shared helper functions over action-to-action calls in the same runtime.
+- If TypeScript hits circular inference while calling a function in the same module, add an explicit return type annotation.
+
+## Runtime and execution semantics
+
+- Queries and mutations must remain deterministic.
+- Actions may have side effects and are not automatically retried.
+- Prefer calling mutations from clients and scheduling actions from mutations for durable intent capture.
+- Await all promises to avoid dropped async work and hidden errors.
+
+## Node runtime ("use node")
+
+- Use `"use node";` only for action files that need Node APIs or unsupported npm packages.
+- Files with `"use node";` must not contain queries or mutations.
+- Files without `"use node";` must not import `"use node"` files.
+
+## HTTP actions
+
+- Define routes in `convex/http.ts` with `httpRouter()` and `http.route(...)`.
+- Implement HTTP handlers with `httpAction(...)`.
+- HTTP actions do not support Convex `args` validators; parse and validate request payloads explicitly.
+- Keep HTTP actions thin: parse request, call Convex functions, and return `Response`.
+- Remember that HTTP action request/response body size is limited (20MB at time of writing).
+
+## Minimal examples
+
+```ts
+import { query, internalMutation } from "./_generated/server";
+import { v } from "convex/values";
+
+export const publicList = query({
+  args: {},
+  returns: v.array(v.string()),
+  handler: async () => [],
 });
 
-export const g = query({
-  args: {},
+export const applyInternalChange = internalMutation({
+  args: { id: v.id("tasks"), done: v.boolean() },
   returns: v.null(),
   handler: async (ctx, args) => {
-    const result: string = await ctx.runQuery(api.example.f, { name: "Bob" });
+    await ctx.db.patch("tasks", args.id, { done: args.done });
     return null;
   },
 });
 ```
-
-### Function references
-- `api` for public functions.
-- `internal` for internal functions.
-- File-based routing for references.
-
-### Api design
-- Organize files with public functions under `convex/`.
-- Use `query`, `mutation`, and `action` for public functions.
-- Use `internalQuery`, `internalMutation`, and `internalAction` for internal functions.

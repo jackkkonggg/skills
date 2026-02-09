@@ -1,15 +1,26 @@
 ---
 name: convex-best-practices
-description: Use when applying Convex best practices across functions, runtime behavior, and schema design.
+description: Use when writing, reviewing, or refactoring Convex backend code (queries, mutations, actions, HTTP actions, schema, indexes, scheduling, file storage, and search) to enforce production-safe patterns.
 ---
 
 # Convex Best Practices
 
-Use these combined rules when working on Convex projects.
+Apply these rules when working on Convex codebases.
 
-## References
+## Rule loading order
 
-- Read `AGENTS.md` for the compiled agent rule set.
-- Read `rules/convex-functions.md` for Convex function rules.
-- Read `rules/convex-runtime.md` for runtime and database rules.
-- Read `rules/convex-schema.md` for schema and type rules.
+1. Read `rules/convex-functions.md`.
+2. Read `rules/convex-database.md`.
+3. Read `rules/convex-realtime.md`.
+4. Read `rules/convex-authentication.md`.
+5. Read `rules/convex-scheduling.md`.
+6. Read `rules/convex-file-storage.md`.
+7. Read `rules/convex-search.md`.
+8. Read `rules/convex-components.md`.
+9. Use `AGENTS.md` as a compact summary plus pointer.
+
+## Enforcement policy
+
+- Use recommendation-first language for style and performance guidance.
+- Use strict language (`must` / `must not`) only for security, correctness, or runtime constraints.
+- Prefer official Convex docs when resolving conflicts; update these rules when docs change.
