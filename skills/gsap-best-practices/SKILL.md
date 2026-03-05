@@ -7,6 +7,10 @@ description: Use when writing, reviewing, or refactoring GSAP animation code in 
 
 Apply these rules when working on GSAP-powered animation codebases.
 
+## Current platform note
+
+- As of March 6, 2026, official GSAP docs state that all plugins, including former Club GSAP bonus plugins, are freely available in the public package. Use the standard `gsap` package and do not recommend legacy private-registry or paid-only installation flows. Prefer GSAP `3.13+` when this matters.
+
 ## Rule loading order
 
 1. Read `rules/gsap-core.md`.

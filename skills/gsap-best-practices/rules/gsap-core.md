@@ -10,6 +10,8 @@
 
 ## Setup and ownership
 
+- As of March 6, 2026, GSAP docs state that all plugins, including the former bonus plugins, are available through the public package. Use normal npm/package imports and avoid legacy private-registry guidance like `npm.greensock.com`.
+- If installation guidance is part of the task, prefer GSAP `3.13+` so public plugin availability matches current docs.
 - Register plugins once during app startup or module initialization, not inside tight render/update loops.
 - Create animations as close as possible to the feature that owns the DOM nodes.
 - Store long-lived timelines/tweens in stable references so control methods (`play`, `pause`, `reverse`) are deterministic.

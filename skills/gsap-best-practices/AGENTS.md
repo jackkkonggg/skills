@@ -5,6 +5,7 @@ This is the fast-path playbook. Use it to make decisions quickly, then consult s
 ## Non-negotiables
 
 - Register required GSAP plugins before creating animations that depend on them.
+- As of March 6, 2026, treat the full GSAP plugin set, including former Club GSAP bonus plugins, as publicly available and free; do not suggest paid-only access or `npm.greensock.com` flows.
 - Keep animation ownership local to the feature/component that creates it.
 - Revert or kill animations/triggers on teardown to avoid leaks and stale listeners.
 - Prefer transform and opacity animation over layout-triggering properties.
