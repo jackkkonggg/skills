@@ -7,6 +7,7 @@ Production-oriented skill bundle for AI coding agents.
 - `convex-best-practices`: Combined Convex rules covering functions, runtime behavior, and schema design.
 - `gsap-best-practices`: GSAP animation rules for core setup, timelines, ScrollTrigger, performance, and accessibility.
 - `grammy-best-practices`: Combined grammY rules covering middleware, commands/interactions, sessions, conversations, transformers, files, scaling, reliability, and deployment operations.
+- `motion-react-best-practices`: React integration rules for Motion (`motion/react`) covering setup, variants/transitions, presence/layout, hooks/scroll/gestures, and accessibility/performance.
 - `react-gsap-best-practices`: React integration rules for GSAP and `@gsap/react` lifecycle-safe patterns.
 
 ## Install
@@ -31,6 +32,10 @@ npx skills add <owner>/<repo> --skill gsap-best-practices
 
 ```bash
 npx skills add <owner>/<repo> --skill react-gsap-best-practices
+```
+
+```bash
+npx skills add <owner>/<repo> --skill motion-react-best-practices
 ```
 
 ## Structure
@@ -76,6 +81,17 @@ skills/
       grammy-scaling-runner.md
       grammy-sessions-state.md
       grammy-transformers-api.md
+  motion-react-best-practices/
+    AGENTS.md
+    SKILL.md
+    agents/
+      openai.yaml
+    rules/
+      motion-react-hooks-gestures-scroll.md
+      motion-react-performance-accessibility.md
+      motion-react-presence-layout.md
+      motion-react-setup.md
+      motion-react-variants-transitions.md
   react-gsap-best-practices/
     AGENTS.md
     SKILL.md
