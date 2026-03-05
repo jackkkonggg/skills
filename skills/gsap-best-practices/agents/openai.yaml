@@ -1,0 +1,4 @@
+interface:
+  display_name: "GSAP Best Practices"
+  short_description: "Production-safe patterns for GSAP animation code."
+  default_prompt: "Use $gsap-best-practices to review and improve this GSAP animation change."
