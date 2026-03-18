@@ -4,6 +4,7 @@ Production-oriented skill bundle for AI coding agents.
 
 ## Available Skills
 
+- `code-audit`: Structured codebase audit with auto-detection of technologies, Context7 doc loading, installed skill discovery, and prioritized findings report with optional auto-fix.
 - `convex-best-practices`: Combined Convex rules covering functions, runtime behavior, and schema design.
 - `gsap-best-practices`: GSAP animation rules for core setup, timelines, ScrollTrigger, performance, and accessibility.
 - `grammy-best-practices`: Combined grammY rules covering middleware, commands/interactions, sessions, conversations, transformers, files, scaling, reliability, and deployment operations.
@@ -17,6 +18,10 @@ npx skills add <owner>/<repo>
 ```
 
 Install a specific skill:
+
+```bash
+npx skills add <owner>/<repo> --skill code-audit
+```
 
 ```bash
 npx skills add <owner>/<repo> --skill convex-best-practices
@@ -42,6 +47,17 @@ npx skills add <owner>/<repo> --skill motion-react-best-practices
 
 ```
 skills/
+  code-audit/
+    AGENTS.md
+    SKILL.md
+    agents/
+      openai.yaml
+    rules/
+      audit-code-quality.md
+      audit-context-loading.md
+      audit-detection.md
+      audit-evaluation.md
+      audit-reporting.md
   convex-best-practices/
     AGENTS.md
     SKILL.md
