@@ -16,8 +16,10 @@ Apply these rules when working on GSAP-powered animation codebases.
 1. Read `rules/gsap-core.md`.
 2. Read `rules/gsap-timelines.md`.
 3. Read `rules/gsap-scrolltrigger.md`.
-4. Read `rules/gsap-performance.md`.
-5. Use `AGENTS.md` as a compact summary plus pointer.
+4. Read `rules/gsap-plugins.md`.
+5. Read `rules/gsap-utils.md`.
+6. Read `rules/gsap-performance.md`.
+7. Use `AGENTS.md` as a compact summary plus pointer.
 
 ## Enforcement policy
 

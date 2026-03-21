@@ -9,14 +9,61 @@
 - https://gsap.com/docs/v3/GSAP/gsap.killTweensOf()
 - https://gsap.com/resources/react-basics/
 
-## Performance defaults
+## Prefer transforms and opacity
 
-- Prefer `x`, `y`, `scale`, `rotation`, and `autoAlpha` over `top`, `left`, `width`, and `height` when possible.
-- Keep concurrent animations bounded; stagger lists instead of animating every item at once.
-- Use `will-change` sparingly and remove it when animation ends.
-- Avoid expensive per-frame work inside `onUpdate` callbacks.
-- For very high-frequency input loops (pointermove/ticker), prefer `quickSetter()` or `quickTo()` over creating new tweens each event.
+- Animating `x`, `y`, `scale`, `rotation`, and `opacity`/`autoAlpha` stays on the compositor and avoids layout/paint.
+- Avoid animating `width`, `height`, `top`, `left`, `margin`, `padding` when transforms can achieve the same effect.
+- GSAP's `x` and `y` use transforms (translate) by default — use them instead of `left`/`top` for movement.
+
+## will-change
+
+- Avoid blanket `will-change` in CSS and inline styles — it forces compositing layers and can cause layout instability when overused.
+- Prefer `backface-visibility: hidden` or `translateZ(0)` as targeted GPU promotion hints.
+- Note: the official GSAP docs recommend `will-change: transform` on animated elements. In practice, applying it sparingly to a few key elements is fine; applying it broadly causes more harm than good. Use judgment per element.
+
+## Batch reads and writes
+
+- GSAP batches updates internally. When mixing GSAP with direct DOM reads/writes, do all reads first, then all writes to avoid layout thrashing.
+- Avoid interleaving DOM reads and writes in high-frequency callbacks (`onUpdate`, ticker, pointermove).
+
+## Many elements (stagger and virtualization)
+
+- Use `stagger` instead of many separate tweens with manual delays — it's more efficient and readable.
+- For long lists, consider virtualizing or animating only visible items; avoid hundreds of simultaneous tweens.
+- Reuse timelines where possible; avoid creating new timelines every frame.
+
+## Frequently updated properties (quickTo / quickSetter)
+
+For properties updated on every pointer event or tick, use `quickTo()` or `quickSetter()` to reuse a single tween instead of creating new ones each event:
+
+```ts
+const xTo = gsap.quickTo("#follower", "x", { duration: 0.4, ease: "power3" });
+const yTo = gsap.quickTo("#follower", "y", { duration: 0.4, ease: "power3" });
+
+container.addEventListener("mousemove", (e) => {
+  xTo(e.pageX);
+  yTo(e.pageY);
+});
+```
+
+- `quickTo()` returns a function that updates the tween's end value — smooth interpolation with no allocation.
+- `quickSetter()` sets a value instantly with no tweening — use for raw per-frame updates.
 - Kill superseded tweens (`killTweensOf`) in interactive flows where rapidly repeated input can stack motion.
+
+## Observer and Draggable
+
+- Register `Observer` and `Draggable` plugins before use, like any other GSAP plugin.
+- Always call `.kill()` on `Observer` and `Draggable` instances during teardown; they are not collected by `gsap.context()` or `useGSAP` automatically.
+- Define explicit constraints for `Draggable` (`bounds`, `type`) to prevent unexpected drag behavior.
+- Use `Observer` for unified wheel/touch/pointer input instead of separate native event listeners when GSAP timing integration is needed.
+- Remove any custom event listeners attached alongside Observer/Draggable in the same cleanup path.
+
+## ScrollTrigger performance
+
+- `pin: true` promotes the pinned element — pin only what's needed.
+- `scrub` with a small value (e.g. `scrub: 1`) can smooth work during scroll; test on low-end devices.
+- Call `ScrollTrigger.refresh()` only when layout actually changes, not on every resize (auto-handled, debounced 200ms).
+- Pause or kill off-screen or inactive animations to reduce simultaneous work.
 
 ## Rendering stability
 

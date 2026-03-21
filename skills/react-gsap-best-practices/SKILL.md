@@ -11,9 +11,10 @@ Apply these rules when working on React codebases that use GSAP.
 
 1. Read `rules/react-gsap-setup.md`.
 2. Read `rules/react-gsap-lifecycle.md`.
-3. Read `rules/react-gsap-scrolltrigger.md`.
-4. Read `rules/react-gsap-ssr-strictmode.md`.
-5. Use `AGENTS.md` as a compact summary plus pointer.
+3. Read `rules/react-gsap-dependency-bugs.md`.
+4. Read `rules/react-gsap-scrolltrigger.md`.
+5. Read `rules/react-gsap-ssr-strictmode.md`.
+6. Use `AGENTS.md` as a compact summary plus pointer.
 
 ## Enforcement policy
 
