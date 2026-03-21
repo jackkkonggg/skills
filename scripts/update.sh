@@ -9,6 +9,10 @@ git submodule update --init --remote --depth 1
 echo "  Done."
 
 echo ""
+echo "==> Syncing vendor skills"
+bash "$REPO_DIR/scripts/vendor-sync.sh"
+
+echo ""
 echo "==> Backing up configs"
 bash "$REPO_DIR/scripts/backup.sh"
 

@@ -1,0 +1,93 @@
+{
+  "agent-browser": {
+    "hash": "4eb67ea7a6135b97a0e0d42290a9d23c785b81fea1237af37d2b055388ffc642",
+    "vendor_path": "vendor/vercel-agent-browser/skills/agent-browser"
+  },
+  "browse": {
+    "hash": "c1a312db3acb0104a679b99b34788a15f05f77e9943c256728d0b7bd1a6a3148",
+    "vendor_path": "vendor/gstack/browse"
+  },
+  "cc-commit": {
+    "file_map": {
+      "commit.md": "SKILL.md"
+    },
+    "hash": "d1acbc2bf0c50164f48d6bda872de6a343cd9390954ce903c3431c3119e7f8c4",
+    "vendor_path": "vendor/claude-plugins-official/plugins/commit-commands/commands/commit.md"
+  },
+  "create-design-system-rules": {
+    "hash": "c0d6433e6f8e3e25d3fbef6c06992e42c5b62256e4a1c3c77a22d99522038f05",
+    "vendor_path": "vendor/figma-mcp-server-guide/skills/create-design-system-rules"
+  },
+  "find-skills": {
+    "hash": "649a1c1fd77ca5ce63d5b2ed773bc3401ffaf79eec6fb12c552253c76c1cab5f",
+    "vendor_path": "vendor/vercel-skills/skills/find-skills"
+  },
+  "frontend-design": {
+    "hash": "260c93d88d7102acb9749b0a3117bb4d267f437e64e2829d1d5ff0427df5e379",
+    "vendor_path": "vendor/anthropic-skills/skills/frontend-design"
+  },
+  "implement-design": {
+    "hash": "45a09dbcfeb29fb839db3e4843ae2c8307c8e595a5f73b1aa46034040a93fce7",
+    "vendor_path": "vendor/figma-mcp-server-guide/skills/implement-design"
+  },
+  "next-best-practices": {
+    "hash": "edfece7cb2c40f37fd6656f009953e2b5ab97ba80c552be83f8642fc346097a4",
+    "vendor_path": "vendor/vercel-next-skills/skills/next-best-practices"
+  },
+  "plan-ceo-review": {
+    "hash": "23768faaae28b8acea6484c8b3807bff24872be1d7ba3c77c75e0f5341504c20",
+    "vendor_path": "vendor/gstack/plan-ceo-review"
+  },
+  "plan-eng-review": {
+    "hash": "f7e1e37bb53522e6c17e8e90f07c035f89cffb57497776a44c15485f102d3c88",
+    "vendor_path": "vendor/gstack/plan-eng-review"
+  },
+  "qa": {
+    "hash": "6e9ac7ac5c13e8f64ae793a48fddb49396f7af289b376591f7340fee27ed40e4",
+    "vendor_path": "vendor/gstack/qa"
+  },
+  "remotion-best-practices": {
+    "hash": "db47955e893162e13ac47c98d109da12caaf98fdb7f75c0cbcb8c166fd0825d8",
+    "vendor_path": "vendor/remotion-skills/skills/remotion"
+  },
+  "retro": {
+    "hash": "73f3b687d21d970fac21948319b0805c025b0765e128bddd80921a972c0a6e68",
+    "vendor_path": "vendor/gstack/retro"
+  },
+  "review": {
+    "hash": "e3e54c74ecab34a771cc9dba4f72a6a1873439add0467f7a65192d9403f257ba",
+    "vendor_path": "vendor/gstack/review"
+  },
+  "setup-browser-cookies": {
+    "hash": "eaf3efea5ac395a76b3ed0f7b1b550cb7cf12aa1e89beecf0b663a64fbf03088",
+    "vendor_path": "vendor/gstack/setup-browser-cookies"
+  },
+  "shadcn": {
+    "hash": "7bc7ebf9f5e7a0386cddd95c5a58f7a837a5082133b6d5804e30f6ade644f525",
+    "vendor_path": "vendor/shadcn-ui/skills/shadcn"
+  },
+  "ship": {
+    "hash": "8a09010979ba93c1d9bbd8c7be38255124c9ce257f5ca2246600cab70f6c34bd",
+    "vendor_path": "vendor/gstack/ship"
+  },
+  "swift-concurrency": {
+    "hash": "45b08c43908262f38c0a2955d7798e997ff6ba713cf35f980900b29ad98bcfd7",
+    "vendor_path": "vendor/swift-concurrency/swift-concurrency"
+  },
+  "swiftui-expert-skill": {
+    "hash": "e5f3c061b89e90104ebc3feee36cbf77f0facbc99c06fd2bdc9e5e715d6e41ff",
+    "vendor_path": "vendor/swiftui-agent-skill/swiftui-expert-skill"
+  },
+  "vercel-composition-patterns": {
+    "hash": "5b5e11bf02c2b69edc0271abab4c53c83708203c188125a43f69decd80c96ba7",
+    "vendor_path": "vendor/vercel-agent-skills/skills/composition-patterns"
+  },
+  "vercel-react-best-practices": {
+    "hash": "4b178e85966f554c5c6095284d262d008e183a06da308b63931772e02a2a8e6e",
+    "vendor_path": "vendor/vercel-agent-skills/skills/react-best-practices"
+  },
+  "web-design-guidelines": {
+    "hash": "e9596b4d8c877954a9350596c1f885b2e4112485a202f3e9848416d8fa30b19f",
+    "vendor_path": "vendor/vercel-agent-skills/skills/web-design-guidelines"
+  }
+}
