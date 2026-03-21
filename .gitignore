@@ -17,9 +17,10 @@ build/
 .turbo/
 .next/
 
-# Env
+# Env / Secrets
 .env
 .env.*
+config/codex/config.toml
 
 # Logs
 *.log

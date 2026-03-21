@@ -1,0 +1,48 @@
+[submodule "vendor/vercel-agent-skills"]
+	path = vendor/vercel-agent-skills
+	url = https://github.com/vercel-labs/agent-skills.git
+	shallow = true
+[submodule "vendor/vercel-agent-browser"]
+	path = vendor/vercel-agent-browser
+	url = https://github.com/vercel-labs/agent-browser.git
+	shallow = true
+[submodule "vendor/vercel-skills"]
+	path = vendor/vercel-skills
+	url = https://github.com/vercel-labs/skills.git
+	shallow = true
+[submodule "vendor/vercel-next-skills"]
+	path = vendor/vercel-next-skills
+	url = https://github.com/vercel-labs/next-skills.git
+	shallow = true
+[submodule "vendor/anthropic-skills"]
+	path = vendor/anthropic-skills
+	url = https://github.com/anthropics/skills.git
+	shallow = true
+[submodule "vendor/remotion-skills"]
+	path = vendor/remotion-skills
+	url = https://github.com/remotion-dev/skills.git
+	shallow = true
+[submodule "vendor/shadcn-ui"]
+	path = vendor/shadcn-ui
+	url = https://github.com/shadcn/ui.git
+	shallow = true
+[submodule "vendor/swiftui-agent-skill"]
+	path = vendor/swiftui-agent-skill
+	url = https://github.com/avdlee/swiftui-agent-skill.git
+	shallow = true
+[submodule "vendor/swift-concurrency"]
+	path = vendor/swift-concurrency
+	url = https://github.com/avdlee/swift-concurrency-agent-skill.git
+	shallow = true
+[submodule "vendor/figma-mcp-server-guide"]
+	path = vendor/figma-mcp-server-guide
+	url = https://github.com/figma/mcp-server-guide.git
+	shallow = true
+[submodule "vendor/gstack"]
+	path = vendor/gstack
+	url = https://github.com/garrytan/gstack.git
+	shallow = true
+[submodule "vendor/claude-plugins-official"]
+	path = vendor/claude-plugins-official
+	url = https://github.com/anthropics/claude-plugins-official.git
+	shallow = true
