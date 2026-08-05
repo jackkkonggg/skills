@@ -1,20 +1,21 @@
 ---
 name: react-doctor
 description: Use to scan, triage, and fix React diagnostics before finishing or committing React changes.
-version: "1.2.0"
 ---
 
 # React Doctor
 
 Scans React codebases for security, performance, correctness, and architecture issues, producing a 0–100 health score.
 
+Run commands from the React project directory containing `package.json`. When operating elsewhere, pass the target directory as the first argument, for example `pnpm dlx react-doctor@latest /path/to/project --verbose`.
+
 ## After React code changes
 
-Run `npx react-doctor@latest --verbose --scope changed`. Fix any introduced issues and score regressions before committing.
+Run `pnpm dlx react-doctor@latest --verbose --scope changed`. Fix any introduced issues and score regressions before committing.
 
-For general cleanup, run `npx react-doctor@latest --verbose` and fix errors before warnings.
+For general cleanup, run `pnpm dlx react-doctor@latest --verbose` and fix errors before warnings.
 
-For a focused UI audit, run `npx react-doctor@latest design --verbose`.
+For a focused UI audit, run `pnpm dlx react-doctor@latest design --verbose`.
 
 ## /doctor — full local triage workflow
 
@@ -30,4 +31,4 @@ The playbook is the source of truth for its scan → filter → triage → fix �
 
 ## Configuring or explaining rules
 
-When explaining or tuning rules, read [references/explain.md](references/explain.md), run `npx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.
+When explaining or tuning rules, read [references/explain.md](references/explain.md), run `pnpm dlx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.

@@ -1,13 +1,13 @@
-diff --git a/new_pristine/SKILL.md b/candidate/SKILL.md
-index d9e4c46..e07d041 100644
---- a/new_pristine/SKILL.md
-+++ b/candidate/SKILL.md
-@@ -1,30 +1,24 @@
+diff --git a/pristine/SKILL.md b/current/SKILL.md
+index d9e4c46..917a685 100644
+--- a/pristine/SKILL.md
++++ b/current/SKILL.md
+@@ -1,30 +1,25 @@
  ---
  name: react-doctor
 -description: Use when finishing a feature, fixing a bug, before committing React code, or when the user types `/doctor`, asks to scan, triage, or clean up React diagnostics. Covers lint, accessibility, bundle size, architecture. Includes a regression check and a full local-triage workflow that fetches the canonical playbook.
+-version: "1.2.0"
 +description: Use to scan, triage, and fix React diagnostics before finishing or committing React changes.
- version: "1.2.0"
  ---
  
  # React Doctor
@@ -16,22 +16,23 @@ index d9e4c46..e07d041 100644
 +Scans React codebases for security, performance, correctness, and architecture issues, producing a 0–100 health score.
  
 -## After making React code changes:
-+## After React code changes
++Run commands from the React project directory containing `package.json`. When operating elsewhere, pass the target directory as the first argument, for example `pnpm dlx react-doctor@latest /path/to/project --verbose`.
  
 -Run `npx react-doctor@latest --verbose --scope changed` and check the score did not regress.
-+Run `npx react-doctor@latest --verbose --scope changed`. Fix any introduced issues and score regressions before committing.
++## After React code changes
  
 -If the score dropped, fix the regressions before committing.
-+For general cleanup, run `npx react-doctor@latest --verbose` and fix errors before warnings.
++Run `pnpm dlx react-doctor@latest --verbose --scope changed`. Fix any introduced issues and score regressions before committing.
  
 -## For general cleanup or code improvement:
--
++For general cleanup, run `pnpm dlx react-doctor@latest --verbose` and fix errors before warnings.
+ 
 -Run `npx react-doctor@latest --verbose` (the default `--scope full`) to scan the full codebase. Fix issues by severity — errors first, then warnings.
 -
 -## For a focused UI design audit:
 -
 -Run `npx react-doctor@latest design --verbose`. This selects only design-tagged UI composition, typography, interaction, accessibility, and motion rules, including focused rules that remain opt-in during a general health scan.
-+For a focused UI audit, run `npx react-doctor@latest design --verbose`.
++For a focused UI audit, run `pnpm dlx react-doctor@latest design --verbose`.
  
  ## /doctor — full local triage workflow
  
@@ -40,7 +41,7 @@ index d9e4c46..e07d041 100644
  
  ```bash
  curl --fail --silent --show-error \
-@@ -32,25 +26,8 @@ curl --fail --silent --show-error \
+@@ -32,25 +27,8 @@ curl --fail --silent --show-error \
    https://www.react.doctor/prompts/react-doctor-agent.md
  ```
  
@@ -67,14 +68,70 @@ index d9e4c46..e07d041 100644
 -| `--scope lines`   | Only report issues on the changed lines                          |
 -| `--score`         | Output only the numeric score                                    |
 -| `design`          | Run only the focused UI design diagnostics                       |
-+When explaining or tuning rules, read [references/explain.md](references/explain.md), run `npx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.
-diff --git a/candidate/agents/openai.yaml b/candidate/agents/openai.yaml
++When explaining or tuning rules, read [references/explain.md](references/explain.md), run `pnpm dlx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.
+diff --git a/current/agents/openai.yaml b/current/agents/openai.yaml
 new file mode 100644
 index 0000000..af67929
 --- /dev/null
-+++ b/candidate/agents/openai.yaml
++++ b/current/agents/openai.yaml
 @@ -0,0 +1,4 @@
 +interface:
 +  display_name: "React Doctor"
 +  short_description: "Audit React code for correctness, performance, and accessibility"
 +  default_prompt: "Use $react-doctor to scan and triage this React codebase."
+diff --git a/pristine/references/explain.md b/current/references/explain.md
+index c3a1008..2f04f16 100644
+--- a/pristine/references/explain.md
++++ b/current/references/explain.md
+@@ -4,6 +4,8 @@ Explain React Doctor rules and edit `doctor.config.*` safely. Use this when a us
+ wants to understand a rule or change which rules run — not for fixing diagnostics
+ (that is the main `react-doctor` skill / `/doctor`).
+ 
++Run commands from the React project directory containing `package.json`. When operating elsewhere, pass the target directory as the first argument, for example `pnpm dlx react-doctor@latest /path/to/project --verbose`.
++
+ Triggers: "why did this rule fire", "I disagree with this rule", "turn this rule off",
+ "stop flagging X", "too noisy", "disable design rules".
+ 
+@@ -13,7 +15,7 @@ Triggers: "why did this rule fire", "I disagree with this rule", "turn this rule
+ 2. Explain it before changing anything:
+ 
+ ```bash
+-npx react-doctor@latest rules explain react-doctor/no-array-index-as-key
++pnpm dlx react-doctor@latest rules explain react-doctor/no-array-index-as-key
+ ```
+ 
+ 3. Pick the narrowest control that matches the user's intent (see decision guide).
+@@ -21,22 +23,22 @@ npx react-doctor@latest rules explain react-doctor/no-array-index-as-key
+ 5. Validate the change did what they wanted:
+ 
+ ```bash
+-npx react-doctor@latest --verbose --diff
++pnpm dlx react-doctor@latest --verbose --diff
+ ```
+ 
+ ## Commands
+ 
+ ```bash
+-npx react-doctor@latest rules list                         # every rule + its effective severity
+-npx react-doctor@latest rules list --configured            # only what your config changed
+-npx react-doctor@latest rules list --category Performance   # filter by category
+-npx react-doctor@latest rules explain <rule>               # why it matters + how to configure
+-npx react-doctor@latest rules disable <rule>               # rule never runs
+-npx react-doctor@latest rules enable <rule>                # turn back on at its recommended severity
+-npx react-doctor@latest rules set <rule> warn              # off | warn | error
+-npx react-doctor@latest rules category "React Native" off   # whole category
+-npx react-doctor@latest rules ignore-tag design            # skip a rule family (design, test-noise, …)
+-npx react-doctor@latest rules unignore-tag design
++pnpm dlx react-doctor@latest rules list                         # every rule + its effective severity
++pnpm dlx react-doctor@latest rules list --configured            # only what your config changed
++pnpm dlx react-doctor@latest rules list --category Performance   # filter by category
++pnpm dlx react-doctor@latest rules explain <rule>               # why it matters + how to configure
++pnpm dlx react-doctor@latest rules disable <rule>               # rule never runs
++pnpm dlx react-doctor@latest rules enable <rule>                # turn back on at its recommended severity
++pnpm dlx react-doctor@latest rules set <rule> warn              # off | warn | error
++pnpm dlx react-doctor@latest rules category "React Native" off   # whole category
++pnpm dlx react-doctor@latest rules ignore-tag design            # skip a rule family (design, test-noise, …)
++pnpm dlx react-doctor@latest rules unignore-tag design
+ ```
+ 
+ Rule references accept the full key (`react-doctor/no-danger`), the bare id (`no-danger`), or a legacy key (`react/no-danger`).
