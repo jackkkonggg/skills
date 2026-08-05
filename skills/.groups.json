@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "expected_repo_selectors": 24,
+  "expected_repo_selectors": 25,
   "max_description_characters": 4000,
   "max_skill_description_characters": 140,
   "max_entrypoint_words": 250,
@@ -79,7 +79,8 @@
       "skills": [
         "blast-radius",
         "codebase-architecture",
-        "tdd"
+        "tdd",
+        "react-doctor"
       ]
     },
     {

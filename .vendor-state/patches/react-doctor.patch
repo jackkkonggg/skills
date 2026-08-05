@@ -1,0 +1,80 @@
+diff --git a/new_pristine/SKILL.md b/candidate/SKILL.md
+index d9e4c46..e07d041 100644
+--- a/new_pristine/SKILL.md
++++ b/candidate/SKILL.md
+@@ -1,30 +1,24 @@
+ ---
+ name: react-doctor
+-description: Use when finishing a feature, fixing a bug, before committing React code, or when the user types `/doctor`, asks to scan, triage, or clean up React diagnostics. Covers lint, accessibility, bundle size, architecture. Includes a regression check and a full local-triage workflow that fetches the canonical playbook.
++description: Use to scan, triage, and fix React diagnostics before finishing or committing React changes.
+ version: "1.2.0"
+ ---
+ 
+ # React Doctor
+ 
+-Scans React codebases for security, performance, correctness, and architecture issues. Outputs a 0–100 health score.
++Scans React codebases for security, performance, correctness, and architecture issues, producing a 0–100 health score.
+ 
+-## After making React code changes:
++## After React code changes
+ 
+-Run `npx react-doctor@latest --verbose --scope changed` and check the score did not regress.
++Run `npx react-doctor@latest --verbose --scope changed`. Fix any introduced issues and score regressions before committing.
+ 
+-If the score dropped, fix the regressions before committing.
++For general cleanup, run `npx react-doctor@latest --verbose` and fix errors before warnings.
+ 
+-## For general cleanup or code improvement:
+-
+-Run `npx react-doctor@latest --verbose` (the default `--scope full`) to scan the full codebase. Fix issues by severity — errors first, then warnings.
+-
+-## For a focused UI design audit:
+-
+-Run `npx react-doctor@latest design --verbose`. This selects only design-tagged UI composition, typography, interaction, accessibility, and motion rules, including focused rules that remain opt-in during a general health scan.
++For a focused UI audit, run `npx react-doctor@latest design --verbose`.
+ 
+ ## /doctor — full local triage workflow
+ 
+-When the user types `/doctor`, says "run react doctor", or asks for a full triage / cleanup pass (not just a regression check), fetch the canonical local-triage playbook and follow every step in it:
++When the user types `/doctor`, asks to run React Doctor, or requests full triage, fetch and follow the canonical playbook:
+ 
+ ```bash
+ curl --fail --silent --show-error \
+@@ -32,25 +26,8 @@ curl --fail --silent --show-error \
+   https://www.react.doctor/prompts/react-doctor-agent.md
+ ```
+ 
+-The playbook is the single source of truth — a scan → filter → triage → fix → validate loop that edits the working tree directly (never commits, never opens PRs). Updating the prompt at its source updates every agent on its next fetch — no skill reinstall needed.
+-
+-Pair it with the matching per-rule prompts at `https://www.react.doctor/prompts/rules/<plugin>/<rule>.md` (fetched on demand inside the playbook) so each fix uses the canonical, reviewer-tested recipe.
++The playbook is the source of truth for its scan → filter → triage → fix → validate loop. Edit the working tree directly; never commit or open a PR. Fetch matching rule prompts on demand as directed there.
+ 
+ ## Configuring or explaining rules
+ 
+-When the user wants to understand a rule, disagrees with one, or wants to disable / tune which rules run (not fix code), read [references/explain.md](references/explain.md) and follow it. Start with `npx react-doctor@latest rules explain <rule>`, then apply the narrowest control via `npx react-doctor@latest rules disable|set|category|ignore-tag …`, which edits your `doctor.config.*` (or `package.json#reactDoctor`).
+-
+-## Command
+-
+-```bash
+-npx react-doctor@latest --verbose --scope changed
+-```
+-
+-| Flag              | Purpose                                                          |
+-| ----------------- | ---------------------------------------------------------------- |
+-| `.`               | Scan current directory                                           |
+-| `--verbose`       | Show affected files and line numbers per rule                    |
+-| `--scope changed` | Only report issues introduced vs the base branch (default: full) |
+-| `--scope lines`   | Only report issues on the changed lines                          |
+-| `--score`         | Output only the numeric score                                    |
+-| `design`          | Run only the focused UI design diagnostics                       |
++When explaining or tuning rules, read [references/explain.md](references/explain.md), run `npx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.
+diff --git a/candidate/agents/openai.yaml b/candidate/agents/openai.yaml
+new file mode 100644
+index 0000000..af67929
+--- /dev/null
++++ b/candidate/agents/openai.yaml
+@@ -0,0 +1,4 @@
++interface:
++  display_name: "React Doctor"
++  short_description: "Audit React code for correctness, performance, and accessibility"
++  default_prompt: "Use $react-doctor to scan and triage this React codebase."

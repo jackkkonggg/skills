@@ -39,6 +39,11 @@
     "revision": "04166ac89136d36de2a87f24429e6cc307594953",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/poteto-mode"
   },
+  "react-doctor": {
+    "hash": "8e486b129391e9877868f030d5caf6c8f41c9271a4f9076d89e0787fcff1af62",
+    "revision": "0efadda676fb773dad60b311d4d5d46c2f99be71",
+    "vendor_path": "vendor/millionco-react-doctor/skills/react-doctor"
+  },
   "recall": {
     "hash": "9474770c30404bb4fb01dd9424dfffbae9e559be9228028b6fe1f2764998a647",
     "revision": "04166ac89136d36de2a87f24429e6cc307594953",
