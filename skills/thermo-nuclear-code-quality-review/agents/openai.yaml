@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thermo-Nuclear Code Quality Review"
+  short_description: "Conduct an unforgiving maintainability audit"
+  default_prompt: "Use $thermo-nuclear-code-quality-review to perform a rigorous maintainability review of this change."

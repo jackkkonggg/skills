@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "expected_repo_selectors": 25,
+  "expected_repo_selectors": 26,
   "max_description_characters": 4000,
   "max_skill_description_characters": 140,
   "max_entrypoint_words": 250,
@@ -80,7 +80,8 @@
         "blast-radius",
         "codebase-architecture",
         "tdd",
-        "react-doctor"
+        "react-doctor",
+        "thermo-nuclear-code-quality-review"
       ]
     },
     {

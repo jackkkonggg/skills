@@ -69,6 +69,11 @@
     "revision": "04166ac89136d36de2a87f24429e6cc307594953",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/tdd"
   },
+  "thermo-nuclear-code-quality-review": {
+    "hash": "9f6796876a56a34f8998aa20804edc26ab606949f77704850c572689fa12f73a",
+    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "vendor_path": "vendor/cursor-plugins/cursor-team-kit/skills/thermo-nuclear-code-quality-review"
+  },
   "typescript-best-practices": {
     "hash": "a65ae3ece2fcf4bac489f089589b89f43c31bff72c2732a045a0062783be1e7f",
     "revision": "04166ac89136d36de2a87f24429e6cc307594953",
