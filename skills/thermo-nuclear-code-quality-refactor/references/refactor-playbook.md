@@ -8,6 +8,7 @@ foundation for any authorized rewrite.
 - [Quality bar](#quality-bar)
 - [Ground the real contract](#ground-the-real-contract)
 - [Run the descoping checkpoint](#run-the-descoping-checkpoint)
+- [Set compatibility and migration policy](#set-compatibility-and-migration-policy)
 - [Choose the smallest viable strategy](#choose-the-smallest-viable-strategy)
 - [Design the target shape](#design-the-target-shape)
 - [Balance cleanliness and performance](#balance-cleanliness-and-performance)
@@ -92,6 +93,34 @@ Separate four categories:
 - unknown behavior that needs evidence;
 - internal incidental behavior that is safe to change because it is not
   observable and has no contract.
+
+## Set compatibility and migration policy
+
+Treat backward compatibility and migration as separate product decisions. A
+breaking API cutover may still require preserving or transforming stored data;
+permission to drop old contracts is not permission to discard data.
+
+Ask the user: **Must existing clients or stored data be migrated, and must old
+APIs, contracts, events, formats, CLI, or configuration remain backward
+compatible? If yes, which surfaces, for how long, and what ends support? If no,
+may the legacy surfaces and adapters be deleted instead of reimplemented?**
+
+Record the answer per surface:
+
+| Surface or data | Consumers | Decision | Migration | Support ends | Removal proof |
+|---|---|---|---|---|---|
+| API, event, schema, file format, CLI, config, or persisted data | Known callers or owners | Retain, bridge temporarily, break, or remove | Transform, export, backfill, or none | Date or measurable condition | Search, telemetry, contract test, or owner sign-off |
+
+When compatibility is required, keep translation at a narrow boundary and use
+one canonical internal model. Give every version adapter, dual reader or writer,
+deprecated endpoint, and feature flag an owner and retirement condition. Avoid
+letting legacy branches spread through the new core.
+
+When compatibility is not required, simplify aggressively: remove old
+endpoints, version dispatch, shims, parsers, schemas, configuration aliases,
+dual-read or dual-write paths, tests, docs, and dependencies that exist only for
+the legacy contract. Do not preserve them “just in case.” Still honor explicit
+data-retention, security, legal, audit, export, and rollback obligations.
 
 ## Choose the smallest viable strategy
 
@@ -217,6 +246,8 @@ Report:
 Pause rather than guess when:
 
 - the user has not decided a behavior, compatibility, or feature descope;
+- client migration, data migration, and backward-compatibility requirements
+  have not been decided independently;
 - no test or oracle can distinguish correct from incorrect behavior;
 - external consumers, persisted data, or migration state are unknown;
 - the rewrite boundary or rollback path is undefined;

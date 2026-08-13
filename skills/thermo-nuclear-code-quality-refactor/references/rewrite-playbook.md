@@ -7,6 +7,7 @@ replacements, data migrations, and staged cutovers.
 
 - [Make the rewrite earn its cost](#make-the-rewrite-earn-its-cost)
 - [Negotiate parity before design](#negotiate-parity-before-design)
+- [Choose a compatibility mode](#choose-a-compatibility-mode)
 - [Find a safe seam](#find-a-safe-seam)
 - [Design transition and target separately](#design-transition-and-target-separately)
 - [Prove behavior before cutover](#prove-behavior-before-cutover)
@@ -48,6 +49,27 @@ needs, and whether migration or export is required.
 
 Do not let “parity” mean reproducing accidental implementation details. Preserve
 observable contracts and necessary operational behavior; redesign internals.
+
+## Choose a compatibility mode
+
+Decide compatibility before designing the transition. Do not default to keeping
+every old surface, and do not assume a rewrite authorizes breaking it. Choose
+and document one mode for each contract:
+
+1. **Retain** — old consumers continue indefinitely; make the supported contract
+   explicit and test it.
+2. **Bridge temporarily** — adapt the old boundary to one canonical new model;
+   define migration owner, telemetry, support deadline, and deletion criteria.
+3. **Break and migrate** — update or communicate with every known consumer,
+   transform or export required data, then remove the old surface at cutover.
+4. **Remove without migration** — use only with explicit authorization for both
+   the contract and affected data; delete the compatibility machinery entirely.
+
+Choose API compatibility, client migration, and persisted-data migration
+independently. Prefer a clean breaking cutover when the user confirms no legacy
+support is required and the blast radius is controlled. Prefer a narrow,
+expiring boundary adapter when compatibility is required; never reproduce old
+version branching throughout the target architecture.
 
 ## Find a safe seam
 
@@ -125,6 +147,8 @@ temporary architecture, and verify no fallback silently keeps legacy alive.
 Reject or redesign the rewrite when:
 
 - strict parity is assumed but not inventoried or tested;
+- compatibility or migration is assumed rather than explicitly decided per
+  contract and data set;
 - the scope cannot be split into independently valuable or verifiable slices;
 - old and new systems would evolve independently for an open-ended period;
 - there is no authoritative data owner during migration;
