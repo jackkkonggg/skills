@@ -7,6 +7,7 @@ foundation for any authorized rewrite.
 
 - [Quality bar](#quality-bar)
 - [Ground the real contract](#ground-the-real-contract)
+- [Pass the decision gates](#pass-the-decision-gates)
 - [Run the descoping checkpoint](#run-the-descoping-checkpoint)
 - [Set compatibility and migration policy](#set-compatibility-and-migration-policy)
 - [Choose the smallest viable strategy](#choose-the-smallest-viable-strategy)
@@ -67,6 +68,19 @@ suspected hot paths; do not attribute cost from intuition.
 Use `blast-radius` before deleting or moving a shared contract. Use `tdd` when a
 cheap characterization or regression test can pin the behavior. Use `architect`
 when changing ownership, public types, module boundaries, or persisted data.
+
+## Pass the decision gates
+
+Run the mandatory and applicable conditional gates in
+[decision-gates.md](decision-gates.md) before choosing the target architecture.
+Keep one ledger of decisions and evidence. Batch unresolved questions so the
+user can decide related tradeoffs together; do not re-ask decisions already
+made in the request or repository evidence.
+
+Gates front-load consequential choices, but they are not phase approvals or a
+reason to stall low-risk work. Mark a conditional gate not applicable when its
+trigger is absent. Reopen a passed gate only when new evidence, scope, or design
+invalidates its basis.
 
 ## Run the descoping checkpoint
 
@@ -232,6 +246,7 @@ Run the cheapest evidence that directly proves each relevant claim:
 
 Report:
 
+- mandatory and triggered gate states, decisions, and evidence;
 - agreed preserved behavior and accepted descopes;
 - chosen strategy and rejected alternatives;
 - target ownership and architecture;
@@ -245,6 +260,7 @@ Report:
 
 Pause rather than guess when:
 
+- a mandatory or triggered decision gate remains blocked;
 - the user has not decided a behavior, compatibility, or feature descope;
 - client migration, data migration, and backward-compatibility requirements
   have not been decided independently;

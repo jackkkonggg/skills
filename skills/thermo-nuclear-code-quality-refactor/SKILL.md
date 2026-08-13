@@ -12,26 +12,23 @@ not as permission to change behavior.
 
 ## Required route
 
-1. Read [references/refactor-playbook.md](references/refactor-playbook.md) before
-   planning or editing.
+1. Read [references/refactor-playbook.md](references/refactor-playbook.md) and
+   [references/decision-gates.md](references/decision-gates.md) before planning
+   or editing.
 2. For a rewrite, subsystem replacement, data migration, or staged cutover, also
    read [references/rewrite-playbook.md](references/rewrite-playbook.md).
-3. Before designing, inventory behavior and present specific features, edge
-   cases, or guarantees that could be removed. Ask which may be descoped; if
-   none, confirm strict behavior parity. Do not infer permission from missing
-   tests or low usage.
-4. Ask separately whether clients/data must be migrated and whether
-   old APIs, contracts, events, formats, CLI, or configuration must stay
-   backward compatible. If yes, record surfaces, support period, and
-   retirement criteria. If no, delete legacy paths rather than recreating them.
-5. Choose refactor, incremental replacement, or rewrite from evidence. State the
+3. Ground the real contract. Run every mandatory gate and each triggered
+   conditional gate. Batch unresolved user questions, reuse prior answers, and
+   record pass evidence. Do not infer product authority from missing tests or
+   low usage.
+4. Choose refactor, incremental replacement, or rewrite from evidence. State the
    target architecture, preserved contract, accepted removals, relevant
    performance budgets or a not-applicable finding, migration path, rollback,
    and deletion end-state.
-6. Execute in small verified slices. Keep the system working between slices and
+5. Execute in small verified slices. Keep the system working between slices and
    remove superseded code as soon as its callers are migrated.
-7. Finish with direct behavior evidence, relevant performance evidence, and a
-   read-only `thermo-nuclear-code-quality-review` pass.
+6. Finish with direct behavior evidence, relevant performance evidence or a
+   not-applicable finding, satisfied gate states, and a read-only
+   `thermo-nuclear-code-quality-review` pass.
 
-Pause when descoping, compatibility, migration, or rollout needs a product
-decision the user has not authorized.
+Pause only when a blocking gate needs a decision the user has not authorized.

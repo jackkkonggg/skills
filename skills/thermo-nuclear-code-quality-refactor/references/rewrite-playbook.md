@@ -18,7 +18,8 @@ replacements, data migrations, and staged cutovers.
 
 Start with a rebuttable presumption against a big-bang rewrite. Require concrete
 evidence that a bounded rewrite or incremental replacement is better than
-refactoring in place.
+refactoring in place. The rewrite-justification gate must pass before target
+design; otherwise choose the smallest viable refactor.
 
 Good evidence includes:
 
@@ -146,6 +147,7 @@ temporary architecture, and verify no fallback silently keeps legacy alive.
 
 Reject or redesign the rewrite when:
 
+- a mandatory or triggered decision gate remains blocked;
 - strict parity is assumed but not inventoried or tested;
 - compatibility or migration is assumed rather than explicitly decided per
   contract and data set;
