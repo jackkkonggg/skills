@@ -31,7 +31,9 @@ later. Re-evaluate only when scope, evidence, or the proposed design changes.
    shape blocks the target and a bounded rewrite is safer or materially better.
 5. **Correctness oracle** — Identify how correct and incorrect behavior will be
    distinguished: characterization, contract or differential tests, production
-   samples, invariants, or another reliable oracle.
+   samples, invariants, or another reliable oracle. Pin retained and new
+   contracts only; prove authorized deletion through removal evidence and
+   retained-neighbor checks.
 6. **Architecture deletion** — Name the concepts, modules, branches,
    dependencies, or sources of truth that disappear. Redesign proposals that
    only add layers or redistribute equivalent complexity.

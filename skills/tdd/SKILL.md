@@ -8,14 +8,19 @@ description: Use for requested TDD, focused regression tests, or bugs with an ob
 Make the broken behavior executable before changing production code when a
 clear, cheap test path exists.
 
-1. Identify intended behavior, current behavior, and the smallest observable
+1. Classify the intended contract as retained, new, or explicitly deleted. TDD
+   applies to retained bugs and new behavior. For an authorized deletion, do not
+   reproduce the retired behavior; use `thermo-nuclear-code-quality-tests` to
+   remove obsolete coverage and protect only retained neighboring contracts.
+2. Identify intended behavior, current behavior, and the smallest observable
    reproduction.
-2. Choose the nearest existing unit, component, integration, or regression
+3. Choose the nearest existing unit, component, integration, or regression
    harness.
-3. Add the smallest test that encodes behavior rather than implementation.
-4. Run it before the fix and confirm it fails for the intended reason.
-5. Make the smallest production change that satisfies the contract.
-6. Rerun the focused test, then nearby validation proportional to risk.
+4. Add the smallest test that encodes behavior rather than implementation.
+5. Run it before the fix and confirm it fails for the intended reason.
+6. Make the smallest production change that satisfies the contract.
+7. Rerun the focused test, then nearby validation proportional to risk. Use
+   `thermo-nuclear-code-quality-tests` to prove the new test's sensitivity.
 
 Load [references/workflow.md](references/workflow.md) for flaky bugs, unclear
 harness choices, or cases where failing-before evidence may be impractical.

@@ -21,13 +21,16 @@ not as permission to change behavior.
    conditional gate. Batch unresolved user questions, reuse prior answers, and
    record pass evidence. Do not infer product authority from missing tests or
    low usage.
-4. Choose refactor, incremental replacement, or rewrite from evidence. State the
+4. When tests are added, rewritten, or pruned, use
+   `thermo-nuclear-code-quality-tests` to protect retained contracts without
+   pinning accepted removals.
+5. Choose refactor, incremental replacement, or rewrite from evidence. State the
    target architecture, preserved contract, accepted removals, relevant
    performance budgets or a not-applicable finding, migration path, rollback,
    and deletion end-state.
-5. Execute in small verified slices. Keep the system working between slices and
+6. Execute in small verified slices. Keep the system working between slices and
    remove superseded code as soon as its callers are migrated.
-6. Finish with direct behavior evidence, relevant performance evidence or a
+7. Finish with direct behavior evidence, relevant performance evidence or a
    not-applicable finding, satisfied gate states, and a read-only
    `thermo-nuclear-code-quality-review` pass.
 

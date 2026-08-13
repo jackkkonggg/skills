@@ -111,9 +111,10 @@ which system is authoritative.
 
 ## Prove behavior before cutover
 
-Build an oracle from characterization tests, contract tests, approved behavior
-changes, and representative production data. Compare old and new at the
-observable boundary.
+Build an oracle from retained-contract characterization tests, approved new
+behavior, and representative production data. Record authorized deletions as
+expected differences rather than encoding them as legacy tests. Compare old and
+new at the observable boundary.
 
 Use the strongest affordable evidence:
 

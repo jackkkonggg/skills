@@ -1,5 +1,10 @@
 # TDD workflow details
 
+Red-green evidence protects a retained or new contract. An explicitly authorized
+deletion is not a bug to reproduce: remove tests for the retired behavior and
+verify only durable neighboring outcomes. Do not add an absence test unless
+absence is itself part of the agreed contract.
+
 Prefer no new test over one that mostly tests mocks, mirrors current
 implementation, depends on unrelated global state, or would be deleted
 immediately after the fix.

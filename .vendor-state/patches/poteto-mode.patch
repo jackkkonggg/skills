@@ -502,25 +502,29 @@ index 0f0a888..b13d464 100644
  
  **Reply:** the variants explored, the evidence (screenshots for a visual decision, the observed output or timing for a behavioral one), tradeoffs, your recommendation, and the scratch path. Say plainly that the prototype is throwaway.
 diff --git a/pristine/playbooks/refactoring.md b/current/playbooks/refactoring.md
-index 7a6e8b6..befe1df 100644
+index 7a6e8b6..5eab37c 100644
 --- a/pristine/playbooks/refactoring.md
 +++ b/current/playbooks/refactoring.md
-@@ -1,16 +1,25 @@
+@@ -1,16 +1,29 @@
  ### Refactoring
  
 -**You own the contract. The structure changes; the behavior does not.** For "refactor", "rename", "extract", "inline", "dedupe", "restructure", "move this module", "tidy up this area". Distinct from Feature, which adds behavior, and Bug fix, which corrects it.
-+The structure changes; observable behavior does not.
++The structure changes; retained observable behavior does not. An explicitly
++authorized deletion is a contract change, not behavior to pin.
  
 -A refactor that smuggles in a behavior change loses its safety net. If the cleanup reveals a missing feature or a real bug, split it out and ship the structural change first against the pinned contract. A redesign is allowed, but name it and route to Feature. Large or cross-cutting structural work (a migration across many call sites, a coordinated reshape of many subsystems) belongs to the **figure-it-out** skill; this playbook is the focused-to-medium change.
-+1. Pin current behavior with a characterization test, snapshot, replay, or
-+   equivalence harness. Type checking alone is not a behavior contract.
++1. Classify affected behavior as retained, deleted, or unknown. Pin retained
++   behavior with a characterization test, snapshot, replay, or equivalence
++   harness. Route test pruning to `thermo-nuclear-code-quality-tests`; never
++   characterize behavior authorized for deletion. Type checking alone is not a
++   behavior contract.
 +2. Name the target module layout, types, and call graph. Read
 +   `../references/principles/model-the-domain.md` when the change replaces
 +   scattered state or branching. Keep local code when a new structure would
 +   only add indirection.
 +3. Remove dead weight and redundant paths before introducing the new shape.
-+4. Move in small steps that keep the behavior pin green. When reshaping an API,
-+   migrate every caller and remove the old path in the same wave.
++4. Move in small steps that keep retained behavior pins green. When reshaping an
++   API, migrate every caller and remove the old path in the same wave.
 +5. Verify behavior on the real surface. For a larger reshape, compare old and
 +   new outputs or replay the recorded baseline.
 +6. Confirm the result lowers reader load through fewer layers, less hidden
@@ -540,8 +544,8 @@ index 7a6e8b6..befe1df 100644
 +Split any discovered bug or missing feature into its own change.
  
 -**Reply:** the structure that changed, the pin you held it against, the equivalence proof, the reader-load delta, what shipped and what got reverted. No new behavior.
-+**Reply:** the structure changed, behavior pin, equivalence proof, and
-+reader-load improvement.
++**Reply:** the structure changed, retained behavior pin, authorized deletion
++evidence, equivalence proof, and reader-load improvement.
 diff --git a/pristine/playbooks/runtime-forensics.md b/current/playbooks/runtime-forensics.md
 index 76ebfb3..b60d114 100644
 --- a/pristine/playbooks/runtime-forensics.md
@@ -1263,10 +1267,10 @@ index 0000000..25a1532
 +3. **Only when one shared write target is a real invariant, serialize access structurally** (lockfiles, sequential phases, single-writer actor, or atomic compare-and-swap). Treat "we need a lock" as a design smell to check, not as the default answer.
 diff --git a/current/references/principles/sequence-verifiable-units.md b/current/references/principles/sequence-verifiable-units.md
 new file mode 100644
-index 0000000..2d87c5c
+index 0000000..0e0b18e
 --- /dev/null
 +++ b/current/references/principles/sequence-verifiable-units.md
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,24 @@
 +
 +# Sequence work into verifiable units
 +
@@ -1276,7 +1280,14 @@ index 0000000..2d87c5c
 +
 +**Execution.** In a sweep, migration, or any run of similar edits, verify each change before starting the next. Never batch the edits and verify once at the end. Each unit is a before/after bracket: known-good state, one change, run the check, then proceed. Rebase onto clean trunk first so every check measures against the real baseline. When a lever does the edits, the per-unit check is nearly free; run it anyway.
 +
-+**Delivery.** Stack commits and PRs in the order that proves the work. The canonical shape is the failing test first, then the fix on top. The first unit shows the bug is real (red), the next shows it resolved (green), so a reviewer sees both the problem and the proof. Other story orders are a subtraction before the reshape, a baseline capture before the treatment, the scaffold before the feature. Each commit lands on its own and the sequence reads as an argument.
++**Delivery.** Stack commits and PRs in the order that proves the work. For a bug
++or new contract, the canonical shape is the failing test first, then the fix on
++top. For an authorized deletion, record the contract decision, remove the
++implementation and obsolete tests, then prove retained neighboring behavior;
++never create a failing test for the retired contract. Other story orders are a
++subtraction before the reshape, a baseline capture before the treatment, or the
++scaffold before the feature. Each commit lands on its own and the sequence reads
++as an argument.
 +
 +**Pattern:**
 +- Pick the smallest unit that ends in a check: an edit plus its test, or a commit that stands alone.

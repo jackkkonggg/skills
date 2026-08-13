@@ -61,13 +61,16 @@ Inventory:
 - latency, throughput, memory, allocation, startup, bundle, I/O, and cost facts
   relevant to the requested change.
 
-Create characterization tests for important unpinned behavior before moving it.
-Record baseline test and performance commands and their exit status. Measure
-suspected hot paths; do not attribute cost from intuition.
+Create characterization tests for important retained unpinned behavior before
+moving it. Do not characterize explicitly authorized deletions. Record baseline
+test and performance commands and their exit status. Measure suspected hot
+paths; do not attribute cost from intuition.
 
-Use `blast-radius` before deleting or moving a shared contract. Use `tdd` when a
-cheap characterization or regression test can pin the behavior. Use `architect`
-when changing ownership, public types, module boundaries, or persisted data.
+Use `blast-radius` before deleting or moving a shared contract. Use `tdd` for a
+retained bug or new contract with a cheap failing-first path. Use
+`thermo-nuclear-code-quality-tests` when tests are added, rewritten, pruned, or
+questioned. Use `architect` when changing ownership, public types, module
+boundaries, or persisted data.
 
 ## Pass the decision gates
 
@@ -205,8 +208,9 @@ them together and separation would make the system less safe.
 
 For each slice:
 
-1. State the invariant and observable behavior being preserved.
-2. Add or identify the cheapest direct test that would catch a regression.
+1. State the retained invariant and any explicitly authorized deletion.
+2. Add or identify the cheapest direct test for retained or new contracts. Do
+   not pin deleted behavior.
 3. Make one coherent ownership, data-shape, or control-flow change.
 4. Run the narrow test, then the relevant broader suite; trust exit status.
 5. Measure performance when the slice touches a budgeted path.
@@ -242,6 +246,7 @@ Run the cheapest evidence that directly proves each relevant claim:
 - before/after performance measurements against the agreed budget when relevant;
 - caller and dead-code searches;
 - rollback or downgrade rehearsal when deployment state changed;
+- a `thermo-nuclear-code-quality-tests` audit when test scope changed;
 - a final `thermo-nuclear-code-quality-review` of the actual diff.
 
 Report:
