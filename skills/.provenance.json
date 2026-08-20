@@ -105,7 +105,7 @@
         "emil-vocabulary": {
           "vendor_root": "vendor/emilkowalski-skills",
           "source_root": "skills/animation-vocabulary",
-          "revision": "e695d13cb298db0f46d5ef05be2ad13fa12908a6",
+          "revision": "e879241fab3cdb22e8d95587cdbf40b57a88d7da",
           "files": {
             "SKILL.md": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757"
           }
@@ -113,7 +113,7 @@
         "emil-apple": {
           "vendor_root": "vendor/emilkowalski-skills",
           "source_root": "skills/apple-design",
-          "revision": "e695d13cb298db0f46d5ef05be2ad13fa12908a6",
+          "revision": "e879241fab3cdb22e8d95587cdbf40b57a88d7da",
           "files": {
             "SKILL.md": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61"
           }
@@ -121,7 +121,7 @@
         "emil-opportunities": {
           "vendor_root": "vendor/emilkowalski-skills",
           "source_root": "skills/find-animation-opportunities",
-          "revision": "e695d13cb298db0f46d5ef05be2ad13fa12908a6",
+          "revision": "e879241fab3cdb22e8d95587cdbf40b57a88d7da",
           "files": {
             "SKILL.md": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882"
           }
@@ -129,7 +129,7 @@
         "emil-audit": {
           "vendor_root": "vendor/emilkowalski-skills",
           "source_root": "skills/improve-animations",
-          "revision": "e695d13cb298db0f46d5ef05be2ad13fa12908a6",
+          "revision": "e879241fab3cdb22e8d95587cdbf40b57a88d7da",
           "files": {
             "AUDIT.md": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
             "PLAN-TEMPLATE.md": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
@@ -139,7 +139,7 @@
         "emil-review": {
           "vendor_root": "vendor/emilkowalski-skills",
           "source_root": "skills/review-animations",
-          "revision": "e695d13cb298db0f46d5ef05be2ad13fa12908a6",
+          "revision": "e879241fab3cdb22e8d95587cdbf40b57a88d7da",
           "files": {
             "SKILL.md": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d",
             "STANDARDS.md": "e7d3605034acda54ca13e43aec9e64d65b53de20f75b11b8d694e373012fbe07"
@@ -160,7 +160,7 @@
         "vercel-composition": {
           "vendor_root": "vendor/vercel-labs-agent-skills",
           "source_root": "skills/composition-patterns",
-          "revision": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62",
+          "revision": "b8caa260a420a73042e35521de4b5c8baf6446cc",
           "files": {
             "AGENTS.md": "89e3ddd58fcf99a53a50e25dfd21b8cde1be5f10b7df6bacd3dfa6796932f516",
             "README.md": "85915a43a6f0b4efe525e3cf6398dd866166da2025837c4460468a24a940da94",
@@ -181,7 +181,7 @@
         "vercel-performance": {
           "vendor_root": "vendor/vercel-labs-agent-skills",
           "source_root": "skills/react-best-practices",
-          "revision": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62",
+          "revision": "b8caa260a420a73042e35521de4b5c8baf6446cc",
           "files": {
             "AGENTS.md": "fc93e7421177bbf869cce892bc60a6c83a4517d974bc3bf65c4e2c1e58a6ccf6",
             "README.md": "9eafb2123d3b8b2aef41fba0db2648a3f4f49996f8c7c8bb2c86263befd8b48a",
@@ -270,21 +270,21 @@
         "matt-architecture-scan": {
           "vendor_root": "vendor/mattpocock-skills",
           "source_root": "skills/engineering/improve-codebase-architecture",
-          "revision": "ed37663cc5fbef691ddfecd080dff42f7e7e350d",
+          "revision": "0ab1b63a410a03d3627979a109c8695de27af954",
           "files": {
-            "HTML-REPORT.md": "0b0936104158abeef7246ff6cbabefa4dc055f17589f2833f2d93001421910a1",
-            "SKILL.md": "4b4cb798c3863d5b6f5c0b4604af1ecb5beb6df82553c972898a91ba38bcf289",
+            "HTML-REPORT.md": "581e8bb5a521e46bbda8ca7e19b15948bed882187108092ebb90c62513b77528",
+            "SKILL.md": "d1ac25511a936ff4250a48dbcefda363837d6bb9321b3cba73df99fa37270a75",
             "agents/openai.yaml": "c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1"
           }
         },
         "matt-architecture-design": {
           "vendor_root": "vendor/mattpocock-skills",
           "source_root": "skills/engineering/codebase-design",
-          "revision": "ed37663cc5fbef691ddfecd080dff42f7e7e350d",
+          "revision": "0ab1b63a410a03d3627979a109c8695de27af954",
           "files": {
-            "DEEPENING.md": "125e6b77413ad2bc7cf7a772bc74336d580a50f9e797db2178ed133d62333d06",
-            "DESIGN-IT-TWICE.md": "21c3264953bd30ee87b181a3ccaf0e70649f461e5ffd7dc654acee4ba1788b31",
-            "SKILL.md": "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad",
+            "DEEPENING.md": "f3dd099ce99289bd213914d8ee3e2429b78309c3957ca4583f7659551b1d53c1",
+            "DESIGN-IT-TWICE.md": "8e740bf98446dbd4dfdc132ac4346d9a7eedaf93de6a495889171cf7f99f16bd",
+            "SKILL.md": "2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2",
             "agents/openai.yaml": "edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f"
           }
         }

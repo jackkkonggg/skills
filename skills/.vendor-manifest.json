@@ -5,13 +5,13 @@
     "vendor_path": "vendor/vercel-labs-agent-browser/skills/agent-browser"
   },
   "architect": {
-    "hash": "92c3c6ca5f318ecc50a70f52a87aa2ed4da106411089c3098b0dc45097ecf8d5",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "688c21f2fdea79a344f5f745e718b2bcbe1fa41e1c9ffa6f7ee1dca628caeb4c",
+    "revision": "fd6dd6f7276956a532bb78a748a8d2818b6eb5f4",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/architect"
   },
   "arena": {
-    "hash": "2447f246a0997ecd1af7dd0015e7712dba29d2d8d704ed1f0488daeaa6f10cec",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "14a8a57a87bc8e6e5d2552a4715e888ba16d99b1b2d829679154b66274df7cb7",
+    "revision": "fd6dd6f7276956a532bb78a748a8d2818b6eb5f4",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/arena"
   },
   "blast-radius": {
@@ -30,13 +30,13 @@
     "vendor_path": "vendor/anthropics-skills/skills/frontend-design"
   },
   "interrogate": {
-    "hash": "3c519cb3e8e0732c8358e7ec48fb23a14c5ae2f8cdf3272f02dcbff263384e29",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "03f77b3eaa375b39badcc2d0952c0c13e5649a0bf09c4330e923780236330ace",
+    "revision": "fd6dd6f7276956a532bb78a748a8d2818b6eb5f4",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/interrogate"
   },
   "poteto-mode": {
-    "hash": "f76870ea2345a1abb3fc250af0ca8aca1e7886407ec569b4481eb232b34b6eed",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "d9604febc29d059204324cddfcdec0495e47749ebc37397340a11495da3f9929",
+    "revision": "fd6dd6f7276956a532bb78a748a8d2818b6eb5f4",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/poteto-mode"
   },
   "react-doctor": {
@@ -75,8 +75,8 @@
     "vendor_path": "vendor/cursor-plugins/cursor-team-kit/skills/thermo-nuclear-code-quality-review"
   },
   "typescript-best-practices": {
-    "hash": "a65ae3ece2fcf4bac489f089589b89f43c31bff72c2732a045a0062783be1e7f",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "1e3f414effc3c6797c94c146b5dd0ff37e3478dcef97a68ab5d07d85939ae609",
+    "revision": "fd6dd6f7276956a532bb78a748a8d2818b6eb5f4",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/typescript-best-practices"
   },
   "web-design-guidelines": {
