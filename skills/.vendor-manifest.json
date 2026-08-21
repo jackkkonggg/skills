@@ -1,77 +1,87 @@
 {
   "agent-browser": {
     "hash": "e30f0bb840f6cef6181f680695ec6d08bf18b986e285edc8f2afbd5f28b62333",
-    "revision": "3cc7022271235694b5b5ce8aaea8bbfaa66e8cd5",
+    "revision": "b041bd4c9e71b0b1ea0727a9d9deb1e661615050",
     "vendor_path": "vendor/vercel-labs-agent-browser/skills/agent-browser"
   },
   "architect": {
-    "hash": "92c3c6ca5f318ecc50a70f52a87aa2ed4da106411089c3098b0dc45097ecf8d5",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "688c21f2fdea79a344f5f745e718b2bcbe1fa41e1c9ffa6f7ee1dca628caeb4c",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/architect"
   },
   "arena": {
-    "hash": "2447f246a0997ecd1af7dd0015e7712dba29d2d8d704ed1f0488daeaa6f10cec",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "14a8a57a87bc8e6e5d2552a4715e888ba16d99b1b2d829679154b66274df7cb7",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/arena"
   },
   "blast-radius": {
     "hash": "e80b1eccf103a6b26d8d8eea894ea6026f7f47302a1c97c169c9d9f819f7a5b4",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/blast-radius"
   },
   "figure-it-out": {
     "hash": "cc198f6fdf28cc072865dc71e3cf21030e6d3ae4136de5ef12ac80d2da0a1e06",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/figure-it-out"
   },
   "frontend-design": {
     "hash": "1c85d2efae03f05ebef44501999cefe6d294a8ad310705506fdfe08f19c36a47",
-    "revision": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+    "revision": "0a64e398ec6bb34a494f0c347e8ccae53a862f8e",
     "vendor_path": "vendor/anthropics-skills/skills/frontend-design"
   },
   "interrogate": {
-    "hash": "3c519cb3e8e0732c8358e7ec48fb23a14c5ae2f8cdf3272f02dcbff263384e29",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "03f77b3eaa375b39badcc2d0952c0c13e5649a0bf09c4330e923780236330ace",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/interrogate"
   },
   "poteto-mode": {
-    "hash": "f76870ea2345a1abb3fc250af0ca8aca1e7886407ec569b4481eb232b34b6eed",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "d9604febc29d059204324cddfcdec0495e47749ebc37397340a11495da3f9929",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/poteto-mode"
+  },
+  "react-doctor": {
+    "hash": "b233fec177987236ebca9aa15e3e5ab6364a490acb6aad1c52c2d38ec1640a5f",
+    "revision": "3ff37f33cefec44800b3d979950f41bdef1f960a",
+    "vendor_path": "vendor/millionco-react-doctor/skills/react-doctor"
   },
   "recall": {
     "hash": "9474770c30404bb4fb01dd9424dfffbae9e559be9228028b6fe1f2764998a647",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/recall"
   },
   "reflect": {
     "hash": "f893e6bc18a633f9b4bcd6a939f79ac103a67765b977655890955f57b827a3c3",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/reflect"
   },
   "shadcn": {
     "hash": "99eb32b5b3dd77bc5de07b40df62b75b02ccc8253f41a7d02b1c872ea683ccb3",
-    "revision": "aa13b0cb83cd32beb99820df63db1bb9357bc4f6",
+    "revision": "4e88ab81ae1d1550165db949a903c691a04f699c",
     "vendor_path": "vendor/shadcn-ui/skills/shadcn"
   },
   "show-me-your-work": {
     "hash": "3131b5a60e2e12c0ce6c8bada5de0f26b708126f74c5ab4f196ec6bdd12031c1",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/show-me-your-work"
   },
   "tdd": {
     "hash": "9e1767e1b85949eb1289f2a7ecb19379ababa76eed33bfad0b790495dee2db4c",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/tdd"
   },
+  "thermo-nuclear-code-quality-review": {
+    "hash": "9f6796876a56a34f8998aa20804edc26ab606949f77704850c572689fa12f73a",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
+    "vendor_path": "vendor/cursor-plugins/cursor-team-kit/skills/thermo-nuclear-code-quality-review"
+  },
   "typescript-best-practices": {
-    "hash": "a65ae3ece2fcf4bac489f089589b89f43c31bff72c2732a045a0062783be1e7f",
-    "revision": "04166ac89136d36de2a87f24429e6cc307594953",
+    "hash": "1e3f414effc3c6797c94c146b5dd0ff37e3478dcef97a68ab5d07d85939ae609",
+    "revision": "51a96e0dd838404da19ba83dc70aa21eef71f868",
     "vendor_path": "vendor/cursor-plugins/pstack/skills/typescript-best-practices"
   },
   "web-design-guidelines": {
     "hash": "e9596b4d8c877954a9350596c1f885b2e4112485a202f3e9848416d8fa30b19f",
-    "revision": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62",
+    "revision": "b8caa260a420a73042e35521de4b5c8baf6446cc",
     "vendor_path": "vendor/vercel-labs-agent-skills/skills/web-design-guidelines"
   }
 }

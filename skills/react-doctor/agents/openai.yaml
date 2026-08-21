@@ -1,0 +1,4 @@
+interface:
+  display_name: "React Doctor"
+  short_description: "Audit React code for correctness, performance, and accessibility"
+  default_prompt: "Use $react-doctor to scan and triage this React codebase."

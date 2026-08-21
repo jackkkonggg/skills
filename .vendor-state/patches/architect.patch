@@ -1,8 +1,8 @@
 diff --git a/pristine/SKILL.md b/current/SKILL.md
-index 8bfde56..a2219f7 100644
+index 9c5dd1b..a2219f7 100644
 --- a/pristine/SKILL.md
 +++ b/current/SKILL.md
-@@ -1,79 +1,30 @@
+@@ -1,83 +1,30 @@
  ---
  name: architect
 -description: "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /architect, 'architect this', 'design this', or non-trivial work where jumping to code would lock in the wrong shape."
@@ -36,9 +36,13 @@ index 8bfde56..a2219f7 100644
 -
 -Run the **arena** skill with the design-sketch task and the Phase A grounding artifacts. Pass `references/runner-prompt.md` as each runner's prompt. Each candidate produces a design package shaped per `references/rationale-template.md`: the caller's usage written first, then the type sketch, function signatures, module map, and prose rationale derived from it.
 -
--Use your configured architect runners (defaults `claude-fable-5-thinking-max`, `gpt-5.6-sol-max`, `grok-4.5-fast-xhigh`).
+-Use your configured architect runners (defaults `claude-fable-5-thinking-max`, `gpt-5.6-sol-max`, `grok-4.6-fast-xhigh`, `claude-opus-5-thinking-xhigh`).
 -
--This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+-Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+-
+-Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Reject or revise shallow modules, information leakage, temporal decomposition, and pass-through methods.
+-
+-Compare viable candidates on interface depth. Prefer the design that hides more complexity behind a smaller, simpler public surface. A rich interface can keep call chains short by concentrating capability instead of scattering it across layers.
 -
 -Arena returns one synthesized design package. The synthesis decision populates the rationale's "Synthesis decision" section.
 -
@@ -116,14 +120,76 @@ index 0000000..756b30b
 +  display_name: "Architect"
 +  short_description: "Design types, interfaces, and module boundaries"
 +  default_prompt: "Use $architect to produce a design artifact for this change without implementing it."
+diff --git a/pristine/references/design-red-flags.md b/pristine/references/design-red-flags.md
+deleted file mode 100644
+index 32cb240..0000000
+--- a/pristine/references/design-red-flags.md
++++ /dev/null
+@@ -1,33 +0,0 @@
+-# Design red flags
+-
+-Screen every candidate before synthesis. A red flag is a reason to revise or reject the shape.
+-
+-## Shallow module
+-
+-A shallow module exposes a large interface while hiding little complexity. Judge depth by the capability and policy hidden behind the public surface relative to the size of that surface. Prefer a simple interface backed by substantial behavior.
+-
+-Do not confuse a deep module with a deep call chain. A deep call chain scatters understanding across layers. A deep module concentrates capability behind one interface.
+-
+-Look for these signs:
+-
+-- Callers coordinate several methods to complete one operation.
+-- Public options expose internal stages or implementation choices.
+-- Learning the interface does not save the caller from learning the implementation.
+-
+-## Information leakage
+-
+-Information leakage makes multiple modules depend on the same internal decision. A representation, policy, or protocol detail appears in more than one place, so changing it requires coordinated edits.
+-
+-Public re-exports of transport or wire types are leakage. Parse external data into domain types behind the interface. Keep storage schemas, framework objects, and protocol details private.
+-
+-## Temporal decomposition
+-
+-Temporal decomposition organizes modules by execution order instead of the knowledge they own. Separate load, validate, transform, and save stages often repeat one representation and its invariants across several boundaries.
+-
+-Group code around domain knowledge and ownership. Methods that run at different times can still belong to one module when they protect the same decisions.
+-
+-## Pass-through method
+-
+-A pass-through method forwards the same arguments to another method with the same shape. It adds a layer without hiding complexity.
+-
+-Remove it or move responsibility to the module that can complete the operation. Keep a forwarding boundary only when it adds policy, adaptation, or a distinct abstraction.
+diff --git a/pristine/references/rationale-template.md b/current/references/rationale-template.md
+index 1ddd505..ba8dc76 100644
+--- a/pristine/references/rationale-template.md
++++ b/current/references/rationale-template.md
+@@ -12,7 +12,7 @@ The prose that ships alongside the type sketch. One page. Sentence-case headings
+ 
+ ## Shape
+ 
+-*The recommended architecture. Data structures first; then how data flows through the signatures. Name the load-bearing decisions. State which invariants are encoded in types, where validation lives, and what the system deliberately does not do. Judge interface depth explicitly. State what complexity the public surface hides, what remains exposed to callers, and why the interface is no larger than needed. Cite the principle behind each decision (e.g., `per boundary-discipline`); don't restate it.*
++*The recommended architecture. Data structures first; then how data flows through the signatures. Name the load-bearing decisions: which invariants are encoded in types, where validation lives, what the system deliberately does not do. Cite the principle behind each decision (e.g., `per boundary-discipline`); don't restate it.*
+ 
+ ## Synthesis decision
+ 
+@@ -24,7 +24,7 @@ The prose that ships alongside the type sketch. One page. Sentence-case headings
+ 
+ ## Alternatives considered
+ 
+-*Required. Name at least one concrete alternative shape, with one line on why it lost. Judge each alternative on interface depth, not implementation simplicity alone. Name the complexity it exposes to callers and the complexity it hides. Two or three alternatives belong here when the design space had real contenders. One is fine when the constraints forced the answer, with the conclusion phrased as "this was the only viable shape because..." Avoid listing flavors of the same shape. This section covers design alternatives the chosen shape considered and rejected, not other runner candidates.*
++*Required. Name at least one concrete alternative shape, with one line on why it lost. Two or three when the design space had real contenders; one is fine when the constraints forced the answer, with the conclusion phrased as "this was the only viable shape because..." Avoid listing flavors of the same shape. Distinct from "Synthesis decision": this section covers design alternatives the chosen shape considered and rejected, not other runner candidates.*
+ 
+ ## Open questions and risks
+ 
 diff --git a/pristine/references/runner-prompt.md b/current/references/runner-prompt.md
-index 75593cf..afb8054 100644
+index d2daeee..afb8054 100644
 --- a/pristine/references/runner-prompt.md
 +++ b/current/references/runner-prompt.md
-@@ -8,12 +8,12 @@ Apply the following discipline. The orchestrator compares candidates on these ax
+@@ -8,13 +8,12 @@ Apply the following discipline. The orchestrator compares candidates on these ax
  
  - Caller's usage first. Write the README-style usage and two or three real call sites before the types, then derive the type sketch from them. The usage is the spec; the two must agree, so reconcile the sketch to the usage, not the reverse.
  - Data structures first. Get the core types right and the code becomes obvious. Trace each dominant access pattern through the proposed structure; if the answer is "we'll add a map / index / cache later," the structure is wrong.
+-- Interface depth. Compare the capability hidden behind the public surface relative to the size of that surface. Prefer a simple interface that pulls complexity into the callee, even when the implementation becomes less simple. Do not put transport or wire types on the public surface; parse into domain types behind the interface.
 -- Shared state: if two actors might both write, ask "what happens?" If the answer isn't "nothing," default to per-actor state with a merge at the read boundary, per the **separate-before-serializing-shared-state** principle skill.
 +- Shared state: if two actors might both write, ask "what happens?" If the answer isn't "nothing," default to per-actor state with a merge at the read boundary, per the [Separate Before Serializing Shared State](../../poteto-mode/references/principles/separate-before-serializing-shared-state.md) principle reference.
  - Make boundaries visible. `not implemented` errors for bodies, `// TODO` pseudocode for tricky logic, doc comments stating intent and invariants. A reader should trace data from input to output by reading types and signatures alone.

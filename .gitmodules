@@ -47,3 +47,6 @@
 	path = vendor/claude-plugins-official
 	url = https://github.com/anthropics/claude-plugins-official.git
 	shallow = true
+[submodule "vendor/millionco-react-doctor"]
+	path = vendor/millionco-react-doctor
+	url = https://github.com/millionco/react-doctor.git

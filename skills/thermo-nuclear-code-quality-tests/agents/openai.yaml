@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thermo-Nuclear Code Quality Tests"
+  short_description: "Keep only tests that protect durable contracts"
+  default_prompt: "Use $thermo-nuclear-code-quality-tests to audit this test scope, remove obsolete coverage, and strengthen only useful contract tests."

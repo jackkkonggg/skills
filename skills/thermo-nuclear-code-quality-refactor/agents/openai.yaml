@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thermo-Nuclear Code Quality Refactor"
+  short_description: "Refactor or rewrite toward radical simplicity"
+  default_prompt: "Use $thermo-nuclear-code-quality-refactor to simplify this implementation while preserving or explicitly renegotiating its behavior."

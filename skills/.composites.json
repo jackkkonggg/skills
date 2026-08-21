@@ -161,6 +161,14 @@
             {
               "glob": "agents/openai.yaml",
               "reason": "upstream packaging metadata"
+            },
+            {
+              "glob": "enter-exit.md",
+              "reason": "covered by the curated interaction-routing adapter"
+            },
+            {
+              "glob": "icon-transitions.md",
+              "reason": "covered by the curated interaction-routing adapter"
             }
           ]
         },
@@ -195,6 +203,10 @@
             {
               "glob": "agents/openai.yaml",
               "reason": "upstream packaging metadata"
+            },
+            {
+              "glob": "review-format.md",
+              "reason": "covered by the curated interface-review adapter"
             }
           ]
         }

@@ -1,8 +1,8 @@
 diff --git a/pristine/SKILL.md b/current/SKILL.md
-index 9bd9104..3ffc862 100644
+index 11fb2fb..3ffc862 100644
 --- a/pristine/SKILL.md
 +++ b/current/SKILL.md
-@@ -1,112 +1,26 @@
+@@ -1,113 +1,26 @@
  ---
  name: interrogate
 -description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles."
@@ -39,13 +39,14 @@ index 9bd9104..3ffc862 100644
 -
 -## Step 3, Spawn Reviewers
 -
--Launch all reviewers in a single message using the Task tool. Use the `interrogate reviewers` list from `~/.cursor/rules/pstack-models.mdc` when present, one reviewer per entry, extending or shrinking the Reviewer A/B/C labels below to the configured entry count; otherwise use the table defaults.
+-Launch all reviewers in a single message using the Task tool. Use the `interrogate reviewers` list from `~/.cursor/rules/pstack-models.mdc` when present, one reviewer per entry, extending or shrinking the Reviewer A/B/C/D labels below to the configured entry count; otherwise use the table defaults.
 -
 -| Subagent | Default model |
 -|----------|---------------|
 -| Reviewer A | `claude-fable-5-thinking-max` |
 -| Reviewer B | `gpt-5.6-sol-max` |
--| Reviewer C | `grok-4.5-fast-xhigh` |
+-| Reviewer C | `grok-4.6-fast-xhigh` |
+-| Reviewer D | `claude-opus-5-thinking-xhigh` |
 -
 -For each reviewer:
 -- `subagent_type`: `generalPurpose`
