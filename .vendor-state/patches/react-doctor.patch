@@ -1,8 +1,8 @@
 diff --git a/pristine/SKILL.md b/current/SKILL.md
-index d9e4c46..917a685 100644
+index a6fce60..f911dad 100644
 --- a/pristine/SKILL.md
 +++ b/current/SKILL.md
-@@ -1,30 +1,25 @@
+@@ -1,36 +1,31 @@
  ---
  name: react-doctor
 -description: Use when finishing a feature, fixing a bug, before committing React code, or when the user types `/doctor`, asks to scan, triage, or clean up React diagnostics. Covers lint, accessibility, bundle size, architecture. Includes a regression check and a full local-triage workflow that fetches the canonical playbook.
@@ -13,7 +13,7 @@ index d9e4c46..917a685 100644
  # React Doctor
  
 -Scans React codebases for security, performance, correctness, and architecture issues. Outputs a 0–100 health score.
-+Scans React codebases for security, performance, correctness, and architecture issues, producing a 0–100 health score.
++Scan React codebases for security, performance, correctness, and architecture issues.
  
 -## After making React code changes:
 +Run commands from the React project directory containing `package.json`. When operating elsewhere, pass the target directory as the first argument, for example `pnpm dlx react-doctor@latest /path/to/project --verbose`.
@@ -34,6 +34,14 @@ index d9e4c46..917a685 100644
 -Run `npx react-doctor@latest design --verbose`. This selects only design-tagged UI composition, typography, interaction, accessibility, and motion rules, including focused rules that remain opt-in during a general health scan.
 +For a focused UI audit, run `pnpm dlx react-doctor@latest design --verbose`.
  
+ ## For runtime performance problems:
+ 
+-Run `npx react-doctor@latest scan <url> --format json` in an interactive terminal. React Doctor opens an isolated system Chrome profile, records a DevTools trace while the user reproduces the slow interaction, and flashes purple outlines with component names as React renders. It stops when they press Enter. Read the structured summary first, then inspect the returned local `.json.gz` trace for CPU, browser, and React component evidence.
++Run `npx react-doctor@latest scan <url> --format json` interactively. It records a DevTools trace while the user reproduces the slow interaction. Read the summary, then inspect the local `.json.gz` trace.
+ 
+-If the user needs their authenticated browser state, use `--cdp <remote-debugging-url>`. This requires Chrome to already be running with remote debugging. Never ask for cookies or copy the user's browser profile. Treat the trace as sensitive local application data and never upload it without explicit permission.
++For authenticated browser state, use `--cdp <remote-debugging-url>` with an existing remote-debugging session. Never request cookies, copy a browser profile, or upload traces without permission.
+ 
  ## /doctor — full local triage workflow
  
 -When the user types `/doctor`, says "run react doctor", or asks for a full triage / cleanup pass (not just a regression check), fetch the canonical local-triage playbook and follow every step in it:
@@ -41,14 +49,14 @@ index d9e4c46..917a685 100644
  
  ```bash
  curl --fail --silent --show-error \
-@@ -32,25 +27,8 @@ curl --fail --silent --show-error \
+@@ -38,25 +33,8 @@ curl --fail --silent --show-error \
    https://www.react.doctor/prompts/react-doctor-agent.md
  ```
  
 -The playbook is the single source of truth — a scan → filter → triage → fix → validate loop that edits the working tree directly (never commits, never opens PRs). Updating the prompt at its source updates every agent on its next fetch — no skill reinstall needed.
 -
 -Pair it with the matching per-rule prompts at `https://www.react.doctor/prompts/rules/<plugin>/<rule>.md` (fetched on demand inside the playbook) so each fix uses the canonical, reviewer-tested recipe.
-+The playbook is the source of truth for its scan → filter → triage → fix → validate loop. Edit the working tree directly; never commit or open a PR. Fetch matching rule prompts on demand as directed there.
++The playbook defines the scan, triage, fix, and validation loop. Edit the working tree directly; never commit or open a PR.
  
  ## Configuring or explaining rules
  
@@ -68,7 +76,7 @@ index d9e4c46..917a685 100644
 -| `--scope lines`   | Only report issues on the changed lines                          |
 -| `--score`         | Output only the numeric score                                    |
 -| `design`          | Run only the focused UI design diagnostics                       |
-+When explaining or tuning rules, read [references/explain.md](references/explain.md), run `pnpm dlx react-doctor@latest rules explain <rule>`, and apply the narrowest `rules disable|set|category|ignore-tag` control.
++For rule changes, read [references/explain.md](references/explain.md), run `pnpm dlx react-doctor@latest rules explain <rule>`, and apply the narrowest control.
 diff --git a/current/agents/openai.yaml b/current/agents/openai.yaml
 new file mode 100644
 index 0000000..af67929

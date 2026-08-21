@@ -76,6 +76,10 @@ while IFS= read -r skill; do
   # Step 2: Check if vendor changed
   CURRENT_HASH=$(compute_hash "$VENDOR_FULL")
   if [ "$CURRENT_HASH" = "$STORED_HASH" ]; then
+    REVISION=$(vendor_revision_for_path "$REPO_DIR" "$VENDOR_PATH")
+    if [ -n "$REVISION" ] && [ "$(manifest_get "$MANIFEST" "$skill" "revision")" != "$REVISION" ]; then
+      manifest_set_hash "$MANIFEST" "$skill" "$CURRENT_HASH" "$REVISION"
+    fi
     if [ "$HAS_MODIFICATIONS" = true ]; then
       cp "$TEMP_PATCH" "$PATCH_FILE"
     else
